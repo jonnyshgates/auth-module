@@ -1,6 +1,6 @@
 
     //globals
-    var domain = 'http://localhost/auth';
+    var domain = 'http://localhost/auth-module';
     var firebaseUrl = "https://crackling-inferno-9685.firebaseio.com/";
     var authApp = angular.module('authApp', ['ngRoute', 'firebase']);
     var ref = new Firebase(firebaseUrl);
@@ -67,30 +67,36 @@
     ]);
 
     authApp.controller("registerController", function($scope) {
-        // $scope.email = "test";
-        // $scope.password = "";
-        // $scope.repeatPassword = "";
-        $scope.passwordMatch = "Passwords don't match";
+        
+        $scope.email = "";
+    	$scope.password = "";
+    	$scope.repeatPassword = "";
+    	$scope.passwordMatch = true;
+
+    	$scope.checkMatch = function(){
+    		if($scope.password = $scope.repeatPassword){
+    			$scope.passwordMatch = true;
+    		} 
+    	};
 
         $scope.register = function() {
-            alert('test');
-        //     ref.$createUser({
-        //       email: $scope.email,
-        //       password: $scope.password
-        //     }).then(function(userData) {
-        //       alert("User " + userData.uid + " created successfully!");
+            ref.$createUser({
+              email: $scope.email,
+              password: $scope.password
+            }).then(function(userData) {
+              alert("User " + userData.uid + " created successfully!");
 
-        //       return $scope.authObj.$authWithPassword({
-        //         email: $scope.email,
-        //         password: $scope.password
-        //       });
-        //     }).then(function(authData) {
-        //       alert("Logged in as:", authData.uid);
-        //       window.location.assign(domain + '/#profile');
-        //       window.location.reload();
-        //     }).catch(function(error) {
-        //       alert("Error: ", error);
-        //     });
+              return $scope.authObj.$authWithPassword({
+                email: $scope.email,
+                password: $scope.password
+              });
+            }).then(function(authData) {
+              alert("Logged in as:", authData.uid);
+              window.location.assign(domain + '/#profile');
+              window.location.reload();
+            }).catch(function(error) {
+              alert("Error: ", error);
+            });
         };
 
     });
