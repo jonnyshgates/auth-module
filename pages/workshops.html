@@ -1,0 +1,41 @@
+<h1>Workshops</h1>
+
+<div class="panel-group">
+    <div class="panel panel-default">
+      <div class="panel-heading">Workshop Tasks</div>
+      <div class="panel-body">
+      	<div class="col-md-8">
+	      	<input type="text" class="form-control" placeholder="Type here to search for a workshop" ng-model="search">
+      	</div>
+      	<div class="col-md-4">
+      		<button>Add New Workshop</button>
+      	</div>
+      </div>
+    </div>
+</div>
+
+<table class="table table-hover">
+	<tr>
+		<th>Name</th>
+		<th>Type</th>
+		<th>Start date</th>
+		<th>Reg Code</th>
+		<th>Country</th>
+		<th>Tutor</th>
+		<th>Actions</th>
+	</tr>
+
+	<tbody>
+
+		<tr ng-repeat="workshop in workshops | filter:search">
+			<td>{{ workshop.name }}</td>
+			<td>{{ workshop.type }}</td>
+			<td>{{ workshop.date}}</td>
+			<td>{{ workshop.code}}</td>
+			<td>{{ workshop.country}}</td>
+			<td>{{ workshop.tutor}}</td>
+			<td><button>Edit</button></td>
+		</tr>
+		
+	</tbody>
+</table>

@@ -1,0 +1,42 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+
+/*Layout*/
+
+.highlight {
+	background: #ebebeb;
+	width: 100%;
+	padding: 10px 20px 20px 20px;
+}
+
+.highlight ul {
+	list-style-type: none;
+}
+
+.highlight li {
+	display: inline-block;
+}
+
+.highlight li a {
+	height: 100px;
+	display: block;
+	padding: 30px;
+	background: #fff;
+	margin-right: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+

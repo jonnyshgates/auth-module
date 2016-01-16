@@ -1,0 +1,35 @@
+<h1>Users</h1>
+
+<div class="panel-group">
+    <div class="panel panel-default">
+      <div class="panel-heading">User Tasks</div>
+      <div class="panel-body">
+      	<div class="col-md-8">
+	      	<input type="text" class="form-control" placeholder="Type here to search for a user" ng-model="search">
+      	</div>
+      	<div class="col-md-4">
+      		<a class="btn-default" href="#users/add">Add New User</a>
+      	</div>
+      </div>
+    </div>
+</div>
+
+<table class="table table-hover">
+	<tr>
+		<th>Email Address</th>
+		<th>Name</th>
+		<th>Company</th>
+		<th></th>
+	</tr>
+
+	<tbody>
+
+		<tr ng-repeat="user in users | filter:search">
+			<td>{{ user.email }}</td>
+			<td>{{ user.name }}</td>
+			<td>{{ user.company}}</td>
+			<td><button class="btn-default">Edit</button></td>
+		</tr>
+		
+	</tbody>
+</table>
