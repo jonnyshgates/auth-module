@@ -1,3 +1,7 @@
+<h1>{{pageData.heading}}</h1>
+
+<p>Welcome, {{profile.firstName}}. Use the form below to edit your profile. Changes are automatically saved as you go, so no need to click save!</p>
+
 <label for="username">Username</label>
 <input type="text" class="form-control" ng-model="profile.displayName" ng-change="profile.$save()">
 
