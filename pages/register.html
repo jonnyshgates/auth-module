@@ -3,14 +3,21 @@
 <form id="registerForm">
 
 <label for="email">Email</label>
-<input type="email" class="form-control" ng-model="email" required>
+<input type="email" class="form-control" ng-model="email" ng-change="checkEmail()" required>
+
+<div ng-show="!emailValid" class="alert alert-danger">
+  Please enter a valid email address.
+</div>
 
 <label for="password">Password</label>
 <input type="password" class="form-control" ng-model="password">
 
 <label for="repeat-password">Repeat Password</label>
 <input type="password" class="form-control" ng-model="repeatPassword" ng-change="checkMatch()">
-<p ng-show="!passwordMatch">Passwords do not match</p>
+
+<div ng-show="!passwordMatch" class="alert alert-danger">
+  Passwords do not match.
+</div>
 
 <button class="btn btn-primary" ng-click="register()" data-ng-disabled="formCheck()">Register</button>
 

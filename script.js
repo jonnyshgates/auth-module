@@ -89,6 +89,7 @@
     	$scope.repeatPassword = "";
     	//upon false - warning message will show
     	$scope.passwordMatch = true;
+    	$scope.emailValid = true;
 
     	//check if repeat password input matches
     	$scope.checkMatch = function(){
@@ -99,10 +100,20 @@
     		}
     	};
 
+    	//regex email validation checker for warning box
+    	$scope.checkEmail = function() {
+    		var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    		if(re.test($scope.email)) {
+    			$scope.emailValid = true;
+    		} else {
+    			$scope.emailValid = false;
+    		}
+		};
+
     	//form validator - disables register button upon true
     	//need to add email validator
     	$scope.formCheck = function(){
-    		if($scope.passwordMatch && $scope.password.length > 5){
+    		if($scope.passwordMatch && $scope.password.length > 5  && $scope.emailValid && $scope.email.length > 1 && $scope.repeatPassword.length > 5){
     			return false;
     		} else {
     			return true;
