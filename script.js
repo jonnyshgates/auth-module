@@ -35,12 +35,21 @@
 
     });
 
+    //user authentication controller
     authApp.controller('loginController', function($scope) {
 
+    	//set data for h1
+    	$scope.pageData = {
+    		heading : 'Login'
+    	};
+
+    	//variables to be passed to firebase
         $scope.username = "";
         $scope.password = "";
 
+        //function for logging in
         $scope.login = function(){
+        	//create firebase auth object
             ref.authWithPassword({
               "email": $scope.username,
               "password": $scope.password
@@ -56,27 +65,48 @@
         };   
     });
 
-
+    //profile controller for editing user info
     authApp.controller("profileController", ["$scope", "$firebaseObject",
 
       function($scope, $firebaseObject) {
         
+        //creates three way bind with view
         $scope.profile = $firebaseObject(ref.child('Users').child(authData.uid));
       }
 
     ]);
 
+    //create new user controller - only deals with email and password - other info dealt with in profile
     authApp.controller("registerController", function($scope) {
+
+    	$scope.pageData = {
+    		heading : 'Register'
+    	};
         
+        //set variables for login and password match
         $scope.email = "";
     	$scope.password = "";
     	$scope.repeatPassword = "";
+    	//upon false - warning message will show
     	$scope.passwordMatch = true;
 
+    	//check if repeat password input matches
     	$scope.checkMatch = function(){
-    		if($scope.password = $scope.repeatPassword){
+    		if($scope.password != $scope.repeatPassword){
+    			$scope.passwordMatch = false;
+    		} else {
     			$scope.passwordMatch = true;
-    		} 
+    		}
+    	};
+
+    	//form validator - disables register button upon true
+    	//need to add email validator
+    	$scope.formCheck = function(){
+    		if($scope.passwordMatch && $scope.password.length > 5){
+    			return false;
+    		} else {
+    			return true;
+    		}
     	};
 
         $scope.register = function() {

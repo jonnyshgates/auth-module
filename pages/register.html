@@ -1,5 +1,9 @@
+<h1>{{pageData.heading}}</h1>
+
+<form id="registerForm">
+
 <label for="email">Email</label>
-<input type="text" class="form-control" ng-model="email">
+<input type="email" class="form-control" ng-model="email" required>
 
 <label for="password">Password</label>
 <input type="password" class="form-control" ng-model="password">
@@ -8,4 +12,6 @@
 <input type="password" class="form-control" ng-model="repeatPassword" ng-change="checkMatch()">
 <p ng-show="!passwordMatch">Passwords do not match</p>
 
-<button class="btn btn-primary" ng-click="register()">Register</button>
+<button class="btn btn-primary" ng-click="register()" data-ng-disabled="formCheck()">Register</button>
+
+</form>
