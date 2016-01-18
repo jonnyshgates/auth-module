@@ -24,6 +24,17 @@
         };
     });
 
+    authApp.controller('mainController', function($scope) {
+        if(authData){
+            $scope.uid = authData.uid;
+        };
+
+        $scope.redirectTest = function() {
+            alert('button working');
+        };
+
+    });
+
     //user authentication controller
     authApp.controller('loginController', function($scope) {
 
@@ -57,14 +68,11 @@
     //profile controller for editing user info
     authApp.controller("profileController", ["$scope", "$firebaseObject",
 
-	    function($scope, $firebaseObject) {
-	    	//creates three way bind with view
-	        $scope.profile = $firebaseObject(ref.child('Users').child(authData.uid));
-
-	        $scope.pageData = {
-	    		heading : 'My Profile'
-	    	};
-	    }
+      function($scope, $firebaseObject) {
+        
+        //creates three way bind with view
+        $scope.profile = $firebaseObject(ref.child('Users').child(authData.uid));
+      }
 
     ]);
 
@@ -135,8 +143,8 @@
         $routeProvider
 
             .when('/', {
-                templateUrl : 'pages/profile.html',
-                controller  : 'profileController'
+                templateUrl : 'pages/dashboard.html',
+                controller  : 'mainController'
             })
 
             .when('/login', {
