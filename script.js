@@ -146,7 +146,7 @@
 
             .when('/profile', {
                 templateUrl : 'pages/profile.html',
-                controller : 'profileController'
+                controller : 'profileController',
             })
 
             .when('/register', {
