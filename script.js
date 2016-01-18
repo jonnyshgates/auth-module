@@ -112,25 +112,21 @@
     		}
     	};
 
-        $scope.register = function() {
-            ref.$createUser({
-              email: $scope.email,
-              password: $scope.password
-            }).then(function(userData) {
-              alert("User " + userData.uid + " created successfully!");
-
-              return $scope.authObj.$authWithPassword({
-                email: $scope.email,
-                password: $scope.password
-              });
-            }).then(function(authData) {
-              alert("Logged in as:", authData.uid);
-              window.location.assign(domain + '/#profile');
-              window.location.reload();
-            }).catch(function(error) {
-              alert("Error: ", error);
+        $scope.register = function(){
+        	//create firebase auth object
+            ref.createUser({
+              "email": $scope.email,
+              "password": $scope.password
+            }, function(error, authData) {
+              if (error) {
+                alert("There was an issue, please try again.", error);
+              } else {
+                alert("User created");
+                window.location.assign(domain + '/#login');
+                window.location.reload();
+              }
             });
-        };
+        }; 
 
     });
 
